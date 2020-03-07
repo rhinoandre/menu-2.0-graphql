@@ -14,15 +14,9 @@ const server = new ApolloServer({
     clients,
     tables
   }),
-  context: ({ req, connection }) => {
-    if (connection) {
-      return connection.context;
-    }
-
-    return {
+  context: ({ req }) => ({
       email: convertAuthToEmail(req.headers.authorization)
-    };
-  }
+  })
 });
 
 server.listen().then(({ url }) => {
