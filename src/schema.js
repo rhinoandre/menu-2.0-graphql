@@ -46,6 +46,10 @@ const typeDefs = gql`
     login(email: String!): String
     createClient(client: CreateClient): Client
   }
+
+  type Subscription {
+    newClientOnTable: Client
+  }
 `;
 
 module.exports = typeDefs;

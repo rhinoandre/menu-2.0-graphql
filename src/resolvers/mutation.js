@@ -1,3 +1,5 @@
+const { NEW_CLIENT_ON_TABLE, pubsub } = require("./subscription");
+
 const Mutation = {
   occupyTable(_, { tableId, clientId }, { dataSources }) {
     const client = dataSources.clients.setTable(tableId, clientId);
@@ -8,6 +10,10 @@ const Mutation = {
       ...client,
       table: table
     };
+
+    pubsub.publish(NEW_CLIENT_ON_TABLE, {
+      newClientOnTable: cientWithTable
+    });
 
     return {
       code: "200",
