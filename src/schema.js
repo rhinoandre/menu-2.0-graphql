@@ -15,6 +15,14 @@ const typeDefs = gql`
     "List clients that are currently using the table"
     clients: [Client]!
   }
+
+  type Query {
+    tables: [Table]!
+    table(id: ID!): Table
+    client(email: String!): Client
+    clients: [Client]!
+    me: Client
+  }
 `;
 
 module.exports = typeDefs;
