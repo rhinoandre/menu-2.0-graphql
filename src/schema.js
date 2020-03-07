@@ -23,6 +23,29 @@ const typeDefs = gql`
     clients: [Client]!
     me: Client
   }
+
+  input CreateClient {
+    name: String!
+    email: String!
+  }
+  interface MutationResponse {
+    code: String!
+    success: Boolean!
+    message: String
+  }
+  type OccupyTableMutationResponde implements MutationResponse {
+    code: String!
+    success: Boolean!
+    message: String
+    table: Table!
+    client: Client!
+  }
+  type Mutation {
+    createTable(number: String!): Table!
+    occupyTable(tableId: ID!, clientId: ID!): OccupyTableMutationResponde!
+    login(email: String!): String
+    createClient(client: CreateClient): Client
+  }
 `;
 
 module.exports = typeDefs;
