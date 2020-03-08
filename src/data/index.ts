@@ -22,6 +22,8 @@ class Tables {
     }
   };
 
+  initialize() {}
+
   getTables() {
     const tables = [...Object.values(this.tables)];
 
@@ -42,6 +44,8 @@ class Tables {
 let clientId = 0;
 class Clients {
   clients = {};
+
+  initialize() {}
 
   getClients() {
     return Object.values(this.clients);
@@ -69,7 +73,5 @@ class Clients {
   }
 }
 
-module.exports = {
-  tables: new Tables(),
-  clients: new Clients(),
-};
+export const tables = new Tables();
+export const clients = new Clients();

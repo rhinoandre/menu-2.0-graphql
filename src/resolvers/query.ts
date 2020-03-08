@@ -1,9 +1,11 @@
-const Query = {
+import { IResolverObject } from "apollo-server";
+
+const Query: IResolverObject = {
   tables(_, __, { dataSources }) {
     const tables = [...Object.values(dataSources.tables.getTables())];
 
     return tables.map(
-      (table) => ({
+      (table: any) => ({
         ...table,
         clients: table.clients.map(clientId => dataSources.clients.getClient(clientId))
       })
@@ -18,9 +20,9 @@ const Query = {
   client(_, { email }, { dataSources }) {
     return dataSources.clients.getClient(email);
   },
-  me(_, __, { email }, { dataSources }) {
+  me(_, __, { email }, { dataSources }: any) {
     return dataSources.clients.getClient(email);
   }
 };
 
-module.exports = Query;
+export default Query;

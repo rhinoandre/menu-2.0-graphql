@@ -1,4 +1,4 @@
-const { NEW_CLIENT_ON_TABLE, pubsub } = require("./subscription");
+import { NEW_CLIENT_ON_TABLE, pubsub } from "./subscription";
 
 const Mutation = {
   occupyTable(_, { tableId, clientId }, { dataSources }) {
@@ -30,4 +30,4 @@ const Mutation = {
   }
 };
 
-module.exports = Mutation;
+export default Mutation;

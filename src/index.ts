@@ -1,8 +1,8 @@
-const { ApolloServer } = require("apollo-server");
+import { ApolloServer } from "apollo-server";
 
-const { tables, clients } = require("./data");
-const typeDefs = require("./schema");
-const resolvers = require("./resolvers");
+import { tables, clients } from "./data";
+import typeDefs from "./schema";
+import resolvers from "./resolvers";
 
 const convertAuthToEmail = authorization =>
   Buffer.from(authorization, "base64").toString();
@@ -11,7 +11,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   subscriptions: {
-    onConnect(connectionParams, webSocket) {
+    onConnect(connectionParams: any, webSocket) {
       if (connectionParams.authorization) {
         return {
           email: convertAuthToEmail(connectionParams.authorization)
@@ -40,3 +40,8 @@ server.listen().then(({ url, subscriptionsUrl }) => {
   console.log(`Server ${url}`);
   console.log(`🚀 Subscriptions ready at ${subscriptionsUrl}`);
 });
+
+if (module.hot) {
+  module.hot.accept();
+  module.hot.dispose(() => console.log('Module disposed. '));
+}
