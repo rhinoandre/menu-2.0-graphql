@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config config/webpack.$NODE_ENV.js",
-    "start": "nodemon dist/server"
+    "build:prod": "env NODE_ENV=production yarn build",
+    "start": "concurrently \"env NODE_ENV=development yarn build\" \"yarn start:server\"",
+    "start:server": "nodemon dist/server"
   },
   "keywords": [],
   "author": "",
@@ -19,6 +21,7 @@
     "@types/graphql": "^14.5.0",
     "@types/webpack-env": "^1.15.1",
     "clean-webpack-plugin": "^3.0.0",
+    "concurrently": "^5.1.0",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.2",
     "ts-loader": "^6.2.1",
