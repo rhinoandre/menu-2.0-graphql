@@ -1,1 +1,1 @@
-# Menu 2.0 - GraphQL
+# Menu 2.0 - Server
