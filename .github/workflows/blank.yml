@@ -8,9 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Comment
-        run: echo I'm alive!
-
       - name: Webhook Action
         uses: joelwmale/webhook-action@1.0.0
         env: 
