@@ -12,7 +12,9 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    - name: Review started
+    runs-on: ubuntu-latest
+    steps:
+      - name: Review started
         uses: fjogeleit/http-request-action@master
         with:
           url: '${{ secrets.JIRA_API }}/issue/OM-288/transitions'
