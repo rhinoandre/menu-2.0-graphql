@@ -14,8 +14,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Branch name
-        run: echo ${GITHUB_REF#refs/heads/}
+      - name: Branch name1
+        run: echo ${{ github.head_ref }}
+      - name: Branch name2
+        run: echo ${github.head_ref}
 
       - name: Find JIRA ticket reference
         id: jira
@@ -23,7 +25,7 @@ jobs:
         with:
           regex_pattern: 'OM-[0-9]+'
           regex_flags: 'gim'
-          search_string: ${GITHUB_REF#refs/heads/}
+          search_string: ${github.head_ref}
 
       - name: Echo JIRA reference
         run: echo "My JIRA ticket number is ${{ steps.jira.outputs.first_match }}"
