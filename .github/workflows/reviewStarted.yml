@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Branch name
-        run: echo '${GITHUB_REF}'
+        run: echo ${GITHUB_REF}
 
       - name: Find JIRA ticket reference
         id: jira
@@ -23,7 +23,7 @@ jobs:
         with:
           regex_pattern: 'OM-[0-9]+'
           regex_flags: 'gim'
-          search_string: '${GITHUB_REF}'
+          search_string: ${GITHUB_REF}
 
       - name: Echo JIRA reference
         run: echo "My JIRA ticket number is ${{ steps.jira.outputs.first_match }}"
