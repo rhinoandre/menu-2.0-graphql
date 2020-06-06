@@ -15,7 +15,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get ticket id
-        run: echo ${{ github.payload.pull_request }}
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
       - name: Review started
         uses: fjogeleit/http-request-action@master
