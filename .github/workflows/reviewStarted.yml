@@ -19,3 +19,4 @@ jobs:
           method: 'POST'
           username: ${{ secrets.JIRA_USERNAME }}
           password: ${{ secrets.JIRA_PASSWORD }}
+          data: '{ "transition": { "id": 51 } }'
