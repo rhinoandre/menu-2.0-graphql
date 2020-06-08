@@ -14,9 +14,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Branch name
-        run: echo ${{ github.head_ref }}
-
       - name: Find JIRA ticket reference
         id: jira
         uses: AsasInnab/regex-action@v1
@@ -26,7 +23,7 @@ jobs:
           search_string: ${{ github.head_ref }}
 
       - name: Echo JIRA reference
-        run: echo "My JIRA ticket number is ${{ steps.jira.outputs.first_match }}"
+        run: echo "Move ${{ steps.jira.outputs.first_match }} to "In Review"
 
       - name: Review started
         uses: fjogeleit/http-request-action@master
