@@ -23,13 +23,14 @@ jobs:
           search_string: ${{ github.head_ref }}
 
       - name: Echo JIRA reference
+        if: ${{ steps.jira.outputs.first_match }}
         run: echo "Move ${{ steps.jira.outputs.first_match }} to "In Review"
 
-      - name: Review started
-        uses: fjogeleit/http-request-action@master
-        with:
-          url: '${{ secrets.JIRA_API }}/issue/${{ steps.jira.outputs.first_match }}/transitions'
-          method: 'POST'
-          username: ${{ secrets.JIRA_USERNAME }}
-          password: ${{ secrets.JIRA_PASSWORD }}
-          data: '{ "transition": { "id": 51 } }'
+#       - name: Review started
+#         uses: fjogeleit/http-request-action@master
+#         with:
+#           url: '${{ secrets.JIRA_API }}/issue/${{ steps.jira.outputs.first_match }}/transitions'
+#           method: 'POST'
+#           username: ${{ secrets.JIRA_USERNAME }}
+#           password: ${{ secrets.JIRA_PASSWORD }}
+#           data: '{ "transition": { "id": 51 } }'
