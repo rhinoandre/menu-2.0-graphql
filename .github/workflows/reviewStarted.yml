@@ -25,6 +25,9 @@ jobs:
       - name: Echo JIRA reference
         if: steps.jira.outputs.first_match
         run: echo 'Move ${{ steps.jira.outputs.first_match }} to "In Review"'
+      
+      - name: Get action
+        run: echo ${{ github.action }}
 
 #       - name: Review started
 #         uses: fjogeleit/http-request-action@master
