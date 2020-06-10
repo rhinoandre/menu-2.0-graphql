@@ -26,8 +26,10 @@ jobs:
         if: steps.jira.outputs.first_match
         run: echo 'Move ${{ steps.jira.outputs.first_match }} to "In Review"'
       
-      - name: Get action
-        run: echo ${{ github.action }}
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
 
 #       - name: Review started
 #         uses: fjogeleit/http-request-action@master
