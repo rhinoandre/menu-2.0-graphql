@@ -23,7 +23,7 @@ jobs:
           search_string: ${{ github.head_ref }}
 
       - name: Echo JIRA reference
-        if: ${{ steps.jira.outputs.first_match }}
+        if: steps.jira.outputs.first_match
         run: echo 'Move ${{ steps.jira.outputs.first_match }} to "In Review"'
 
 #       - name: Review started
