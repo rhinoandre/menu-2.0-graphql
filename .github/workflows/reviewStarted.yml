@@ -6,7 +6,7 @@ name: Review started
 # events but only for the master branch
 on:
   pull_request:
-    types: [assigned]
+    types: [assigned, unassigned, ready_for_review]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,9 +27,7 @@ jobs:
         run: echo 'Move ${{ steps.jira.outputs.first_match }} to "In Review"'
       
       - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: echo ${{ github.event.action }}
 
 #       - name: Review started
 #         uses: fjogeleit/http-request-action@master
